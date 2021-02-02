@@ -1,8 +1,8 @@
 {
-  "name": "Chrome extension starter",
-  "version": "0.2.0",
+  "name": "Perfectcorp Tool",
+  "version": "1.0",
   "manifest_version": 2,
-  "description": "A simple chrome extension starter",
+  "description": "A perfectcorp chrome extension. Make the website more convenient.",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
@@ -10,31 +10,15 @@
   "background": {
     "scripts": [
       "background.js"
-    ]
+    ],
+    "persistent": false
   },
   "permissions": [
     "tabs",
     "http://*/*",
     "https://*/*",
-    "background",
-    "bookmarks",
-    "clipboardRead",
-    "clipboardWrite",
-    "contextMenus",
-    "contentSettings",
-    "cookies",
     "*://*.google.com/",
-    "debugger",
-    "history",
-    "idle",
-    "management",
-    "notifications",
-    "pageCapture",
-    "topSites",
-    "storage",
-    "webNavigation",
-    "webRequest",
-    "webRequestBlocking"
+    "storage"
   ],
   "options_ui": {
     "page": "options.html",
@@ -43,22 +27,21 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://eperfect.perfectcorp.com/Ebug/ebugHandle/EbugAssign.asp"
       ],
       "js": [
         "contentscript.js"
       ],
-      "run_at": "document_end",
-      "all_frames": false
+      "css": [],
+      "run_at": "document_end"
     }
   ],
   "browser_action": {
     "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
+      "16": "images/icon-16.png",
+      "128": "images/icon-128.png"
     },
-    "default_title": "Chrome starter extension",
+    "default_title": "Perfect Tool",
     "default_popup": "popup.html"
   }
 }
