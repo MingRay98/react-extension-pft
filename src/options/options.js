@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './index.jsx'
 
-ReactDOM.render(<h1>Options</h1>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
