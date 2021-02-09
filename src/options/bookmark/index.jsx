@@ -16,7 +16,7 @@ export default class Bookmark extends React.Component {
     this.state = {
       bookmarks: initialBookmarks,
       draggable: "#drag",
-      motifyIndex: null,
+      modifyIndex: null,
       menu: null,
       firstTime: true,
       info: null,
@@ -71,8 +71,8 @@ export default class Bookmark extends React.Component {
     this.setBookmarks(tempData);
   };
 
-  onMotify = (index) => {
-    this.setState({motifyIndex: index});
+  onModify = (index) => {
+    this.setState({modifyIndex: index});
     this.setDraggable("false");
   };
 
@@ -82,7 +82,7 @@ export default class Bookmark extends React.Component {
     tempData.splice(index, 1, item);
     this.setBookmarks(tempData);
     this.setDraggable("#drag");
-    this.setState({motifyIndex: null})
+    this.setState({modifyIndex: null})
   };
 
   setMenu = (para) => this.setState({menu: para});
@@ -104,11 +104,11 @@ export default class Bookmark extends React.Component {
 
   render() {
     this.setDragProps();
-    const {motifyIndex, menu, bookmarks, info} = this.state;
+    const {modifyIndex, menu, bookmarks, info} = this.state;
     return (
       <div style={styles.containers}>
         {info && <div style={styles.info}>{info}</div>}
-        {menu === null && motifyIndex === null && (
+        {menu === null && modifyIndex === null && (
           <div style={styles.inputContainer}>
             <div onClick={() => this.saveChange()} style={styles.button}>
               Save
@@ -137,22 +137,22 @@ export default class Bookmark extends React.Component {
             <div style={styles.container} id="item" key={index}>
               <div style={styles.title}>
                 {index + 1}. {item.title}
-                {motifyIndex === index && <input style={styles.input} defaultValue={item.title} ref={(r) => (this.name = r)} />}
+                {modifyIndex === index && <input style={styles.input} defaultValue={item.title} ref={(r) => (this.name = r)} />}
               </div>
               <div>
                 <a style={styles.link} href={item.href}>
                   {item.href}
                 </a>
-                {motifyIndex === index && <input style={styles.input} defaultValue={item.href} ref={(r) => (this.href = r)} />}
+                {modifyIndex === index && <input style={styles.input} defaultValue={item.href} ref={(r) => (this.href = r)} />}
               </div>
               <div style={styles.buttons}>
-                {motifyIndex !== index && <div style={styles.button} onClick={() => this.onMotify(index)}>
-                  Motify
+                {modifyIndex !== index && <div style={styles.button} onClick={() => this.onModify(index)}>
+                  modify
                 </div>}
-                {motifyIndex !== index && <div style={styles.button} onClick={() => this.deleteItem(index)}>
+                {modifyIndex !== index && <div style={styles.button} onClick={() => this.deleteItem(index)}>
                   Delete
                 </div>}
-                {motifyIndex === index &&
+                {modifyIndex === index &&
                   <div style={styles.button} onClick={() => this.saveItem(index, this.name.value, this.href.value)}>
                     Save
                   </div>}
