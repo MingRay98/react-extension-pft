@@ -22,6 +22,8 @@ class bookmark extends Component {
       <div style={styles.linkBtn} key={index} onClick={() => this.redirectLink(item.href)}>
         {item.title}
       </div>))
+    if(!bookmarksElement)
+      return <div>Click options to update settings.</div>
     return bookmarksElement
   };
 

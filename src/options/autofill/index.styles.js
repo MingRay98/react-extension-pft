@@ -10,30 +10,39 @@ export default {
     justifyContent: "center",
     margin: "auto"
   },
+  info: {
+    margin: '2%',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    color: 'red',
+    textAlign: 'center',
+  },
   contentContainer: {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
     margin: '1% 0',
   },
-  title:{
+  title: {
     fontSize: '15px',
   },
   button: {
     borderRadius: "5px",
-    padding: "0.5%",
     margin: "1%",
-    width: "100px",
-    lineHeight: '1.5',
-    textAlign: 'center',
+    minWidth: "70px",
+    width: "max-content",
+    padding: "0.5%",
+    lineHeight: "1.5",
+    textAlign: "center",
     cursor: "pointer",
     color: "white",
-    background: "rgb(250, 0, 100)"
+    background: "rgb(255, 0, 149)"
   },
   buttoContainer: {
     display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-    marginBottom: '25px',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    margin: "auto"
   },
 };

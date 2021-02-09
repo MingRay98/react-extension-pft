@@ -20,7 +20,7 @@ class AutoFill extends Component {
         reviewer && (this.reviewer.value = reviewer)
         owner && (this.owner.value = owner)
         next && (this.next.value = next)
-        autoFill && (this.autoFill.value = autoFill)
+        autoFill && (this.autoFill.checked = autoFill)
       }
     });
   }
@@ -63,8 +63,12 @@ class AutoFill extends Component {
     const {info} = this.state
     return (
       <div style={styles.container}>
+        {info && <div style={styles.info}>{info}</div>}
+        <div style={styles.buttoContainer}>
+          <div style={styles.button} onClick={this.onSave}>Save</div>
+          <div style={styles.button} onClick={this.onReset}>Reset</div>
+        </div>
         <div style={styles.contentContainer}>
-          {info}
           <div style={styles.title}>1.Root Cause</div>
           <textarea rows="2" cols="80" ref={r => this.rootCause = r} />
         </div>
@@ -97,10 +101,6 @@ class AutoFill extends Component {
         <div style={styles.contentContainer}>
           <div style={styles.title}> Automatically Fill</div>
           <input type="checkbox" ref={r => this.autoFill = r} />
-        </div>
-        <div style={styles.buttoContainer}>
-          <div style={styles.button} onClick={this.onSave}>Save</div>
-          <div style={styles.button} onClick={this.onReset}>Reset</div>
         </div>
       </div>
     );

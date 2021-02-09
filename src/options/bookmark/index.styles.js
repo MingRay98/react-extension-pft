@@ -20,6 +20,13 @@ export default {
     position: "relative",
     overflowWrap: 'anywhere'
   },
+  info: {
+    margin: '2%',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    color: 'red',
+    textAlign: 'center',
+  },
   input: {
     margin: "2%"
   },

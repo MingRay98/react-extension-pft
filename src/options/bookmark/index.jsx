@@ -3,11 +3,11 @@ import ReactDragListView from "react-drag-listview";
 import styles from "./index.styles";
 
 const initialBookmarks = [
-  {title: "Home", href: "https://pf-eportal.perfectcorp.com/'"},
-  {title: "Who Leave", href: "https://eperfect.perfectcorp.com/eHR/Attendance/Excuse/RequestForm.asp"},
-  {title: "Vocation Days", href: "https://3"},
-  {title: "Email", href: "http://outlook.com/owa/PerfectCorp.com"},
-  {title: "WorkingTime", href: "https://eperfect.perfectcorp.com/adm/emp/"}
+  {title: "Home", href: "https://"},
+  {title: "Who's on Leave", href: "https://"},
+  {title: "Leave", href: "https://"},
+  {title: "Email", href: "https://"},
+  {title: "Vocation Days", href: "https://"}
 ];
 
 export default class Bookmark extends React.Component {
@@ -20,7 +20,6 @@ export default class Bookmark extends React.Component {
       menu: null,
       firstTime: true,
       info: null,
-      openInitSet: false,
     };
   }
 
@@ -33,9 +32,6 @@ export default class Bookmark extends React.Component {
       } else {
         console.log('FirstTime load true')
         this.setState({bookmarks: initialBookmarks})
-      }
-      if (popup && popup.initPage) {
-        this.setState({initPage: popup.initPage})
       }
     });
   }
@@ -106,27 +102,12 @@ export default class Bookmark extends React.Component {
     })
   }
 
-  oninitPageChanged = (e) => {
-    chrome.storage.sync.set({
-      popup: {
-        initPage: e.target.value
-      }
-    }, () => console.log('Set initPage sucess.'))
-    this.setState({openInitSet: false, initPage: e.target.value})
-  }
-
   render() {
     this.setDragProps();
-    const {motifyIndex, menu, bookmarks, info, openInitSet, initPage} = this.state;
+    const {motifyIndex, menu, bookmarks, info} = this.state;
     return (
       <div style={styles.containers}>
-        {info}
-        <div style={styles.button} onClick={() => this.setState({openInitSet: true})}>Set init page</div>
-        {openInitSet === true &&
-          <div>
-            <label>bookmarks</label><input type="radio" value={'bookmarks'} checked={initPage === 'bookmarks'} onChange={this.oninitPageChanged} />
-            <label>functional</label><input type="radio" value={'functional'} checked={initPage === 'functional'} onChange={this.oninitPageChanged} />
-          </div>}
+        {info && <div style={styles.info}>{info}</div>}
         {menu === null && (
           <div style={styles.inputContainer}>
             <div onClick={() => this.saveChange()} style={styles.button}>
