@@ -23,7 +23,7 @@ class bookmark extends Component {
         {item.title}
       </div>))
     if(!bookmarksElement)
-      return <div>Click options to update settings.</div>
+      return <div style={styles.firstTime}>Click options to update settings.</div>
     return bookmarksElement
   };
 

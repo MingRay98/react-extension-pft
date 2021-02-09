@@ -27,10 +27,10 @@ export default class Bookmark extends React.Component {
     chrome.storage.sync.get(null, (items) => {
       const {options, popup} = items
       if (options && options.firstTime === false) {
-        console.log('FirstTime load false')
+        console.log('First time loading')
         this.setState({firstTime: false, bookmarks: options.bookmarks})
       } else {
-        console.log('FirstTime load true')
+        console.log('Not first time')
         this.setState({bookmarks: initialBookmarks})
       }
     });
@@ -108,7 +108,7 @@ export default class Bookmark extends React.Component {
     return (
       <div style={styles.containers}>
         {info && <div style={styles.info}>{info}</div>}
-        {menu === null && (
+        {menu === null && motifyIndex === null && (
           <div style={styles.inputContainer}>
             <div onClick={() => this.saveChange()} style={styles.button}>
               Save

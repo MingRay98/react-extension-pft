@@ -25,6 +25,7 @@ export default {
     textAlign: 'center',
     cursor: "pointer",
     color: "white",
-    background: "rgb(250, 0, 100)"
+    background: "rgb(250, 0, 100)",
+    marginTop: '20px'
   },
 };

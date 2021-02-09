@@ -27,4 +27,8 @@ export default {
     justifyContent: "space-between",
     width: "100%"
   },
+  firstTime:{
+    fontSize: '18px',
+    fontWeight: 'bold',
+  }
 };

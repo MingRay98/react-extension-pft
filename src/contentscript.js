@@ -10,15 +10,16 @@ class ContentScript {
       this.reviewer = reviewer
       this.owner = owner;
       this.next = next;
+      this.autoFill = autoFill
       if (autoFill)
         this.fillOptions();
     });
-    console.log('Content script init');
   }
 
   init = () => {
     this.buildSettingFill();
     this.buildGetInfo();
+    console.log('Content script init');
   }
 
   buildSettingFill = () => {
@@ -33,6 +34,8 @@ class ContentScript {
     const textarea = document.createElement('textarea');
     const inputButton = document.createElement('button');
 
+    inputContainer.style.cssText = "display: flex; width: fit-content; flex-direction: column; align-items: flex-start;"
+    textarea.placeholder = 'Please input your git info from Email. Paste all infos'
     textarea.rows = 4, textarea.cols = 120;
     inputButton.textContent = 'Get info';
     inputButton.addEventListener('click', () => this.onGetInfo(textarea));

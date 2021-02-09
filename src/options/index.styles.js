@@ -17,6 +17,5 @@ export default {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
-    marginBottom: '25px',
   },
 };
