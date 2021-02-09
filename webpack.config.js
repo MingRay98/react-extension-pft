@@ -5,7 +5,7 @@ const ExtensionReloader = require('webpack-extension-reloader');
 
 module.exports = (env, argv) => {
   const config = {
-    devtool: 'sourcemap',
+    devtool: argv.mode === 'development' ? 'source-map' : 'none',
     entry: {
       background: './src/background',
       contentscript: './src/contentscript',
@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.js|\.jsx$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
