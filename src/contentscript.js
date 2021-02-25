@@ -72,7 +72,7 @@ class ContentScript {
         solution = i.split('[how]')[1]
       if (i.includes('rv:'))
         reviewer = i.split('rv:')[1].toUpperCase();
-      if (i.includes('http://git.pft.com/') && !i.includes('settings'))
+      if ((i.includes('https://git.pft.com/') || i.includes('http://git.pft.com/')) && !i.includes('settings'))
         SVN = i;
     }
     rootCause && (document.getElementById('RootCause').value = rootCause)
