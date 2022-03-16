@@ -14,15 +14,15 @@ class bookmark extends Component {
     });
   }
 
-  redirectLink = (para) => window.open(para)
+  openNewWindow = (para) => window.open(para, '_blank', `top=${window.screen.height * 0.1},left=${window.screen.width * 0.03},width=${window.screen.width * 0.9},height=${window.screen.height * 0.9}"`)
 
   createBookmarks = () => {
     const {bookmarks} = this.state
     const bookmarksElement = bookmarks && bookmarks.map((item, index) => (
-      <div style={styles.linkBtn} key={index} onClick={() => this.redirectLink(item.href)}>
+      <div style={styles.linkBtn} key={index} onClick={() => this.openNewWindow(item.href)}>
         {item.title}
       </div>))
-    if(!bookmarksElement)
+    if (!bookmarksElement)
       return <div style={styles.firstTime}>Click options to update settings.</div>
     return bookmarksElement
   };

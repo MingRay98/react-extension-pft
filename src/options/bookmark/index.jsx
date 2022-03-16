@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDragListView from "react-drag-listview";
 import styles from "./index.styles";
+import manualBookmarks from "./bookmarks";
+import bookmarks from "./bookmarks";
 
 const initialBookmarks = [
   {title: "Home", href: "https://"},
@@ -25,12 +27,11 @@ export default class Bookmark extends React.Component {
 
   componentDidMount() {
     chrome.storage.sync.get(null, (items) => {
-      const {options, popup} = items
+      const {options} = items
       if (options && options.firstTime === false) {
-        console.log('First time loading')
         this.setState({firstTime: false, bookmarks: options.bookmarks})
       } else {
-        console.log('Not first time')
+        console.log('First time loading')
         this.setState({bookmarks: initialBookmarks})
       }
     });
@@ -59,16 +60,18 @@ export default class Bookmark extends React.Component {
   };
 
   deleteItem = (index) => {
-    const tempData = this.state.bookmarks;
-    tempData.splice(index, 1);
-    this.setBookmarks(tempData);
+    const newBookmarks = this.state.bookmarks;
+    newBookmarks.splice(index, 1);
+    this.setBookmarks(newBookmarks);
+    this.onSaveItem(newBookmarks)
   };
 
-  addItem = (name, url) => {
+  onAddItem = (name, url) => {
     const item = {title: name, href: url};
-    const tempData = this.state.bookmarks;
-    tempData.push(item);
-    this.setBookmarks(tempData);
+    const newBookmarks = this.state.bookmarks;
+    newBookmarks.push(item);
+    this.setBookmarks(newBookmarks);
+    this.onSaveItem(newBookmarks)
   };
 
   onModify = (index) => {
@@ -76,7 +79,7 @@ export default class Bookmark extends React.Component {
     this.setDraggable("false");
   };
 
-  saveItem = (index, name, url) => {
+  onSaveChange = (index, name, url) => {
     const item = {title: name, href: url};
     const tempData = this.state.bookmarks;
     tempData.splice(index, 1, item);
@@ -87,10 +90,9 @@ export default class Bookmark extends React.Component {
 
   setMenu = (para) => this.setState({menu: para});
 
-  saveChange = () => {
-    this.setState({info: "save....."})
+  onSaveItem = (bookmarks) => {
+    this.setState({info: "Saving..."})
     window.scrollTo(0, 0);
-    const {bookmarks} = this.state
     chrome.storage.sync.set({
       options: {
         bookmarks: bookmarks,
@@ -102,6 +104,11 @@ export default class Bookmark extends React.Component {
     })
   }
 
+  onUpdate = (bookmarks) => {
+    this.onSaveItem(bookmarks)
+    this.setBookmarks(bookmarks)
+  }
+
   render() {
     this.setDragProps();
     const {modifyIndex, menu, bookmarks, info} = this.state;
@@ -110,11 +117,11 @@ export default class Bookmark extends React.Component {
         {info && <div style={styles.info}>{info}</div>}
         {menu === null && modifyIndex === null && (
           <div style={styles.inputContainer}>
-            <div onClick={() => this.saveChange()} style={styles.button}>
-              Save
-            </div>
-            <div onClick={() => this.setMenu("add")} style={styles.button}>
+            <div onClick={() => this.setMenu("add")} style={{...styles.button, ...styles.button.menu}}>
               Add
+            </div>
+            <div onClick={() => this.onUpdate(manualBookmarks)} style={{...styles.button, ...styles.button.menu}}>
+              Update
             </div>
           </div>
         )}
@@ -123,7 +130,7 @@ export default class Bookmark extends React.Component {
             <input style={styles.input} placeholder="name" ref={(r) => (this.saveName = r)} />
             <input style={styles.input} placeholder="url" ref={(r) => (this.saveHref = r)} />
             <div style={styles.buttons}>
-              <div style={styles.button} onClick={() => this.addItem(this.saveName.value, this.saveHref.value)}>
+              <div style={styles.button} onClick={() => this.onAddItem(this.saveName.value, this.saveHref.value)}>
                 Add
               </div>
               <div onClick={() => this.setMenu(null)} style={styles.button}>
@@ -153,7 +160,7 @@ export default class Bookmark extends React.Component {
                   Delete
                 </div>}
                 {modifyIndex === index &&
-                  <div style={styles.button} onClick={() => this.saveItem(index, this.name.value, this.href.value)}>
+                  <div style={styles.button} onClick={() => this.onSaveChange(index, this.name.value, this.href.value)}>
                     Save
                   </div>}
               </div>

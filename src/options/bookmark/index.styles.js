@@ -1,7 +1,7 @@
 export default {
   containers: {
     align: "center",
-    width: "500px",
+    width: "100%",
     height: "auto",
     overflowY: "auto",
     display: "flex",
@@ -16,7 +16,7 @@ export default {
     borderRadius: "5px",
     padding: "1.5%",
     margin: "1.5%",
-    width: "350px",
+    width: "700px",
     position: "relative",
     overflowWrap: 'anywhere'
   },
@@ -28,7 +28,8 @@ export default {
     textAlign: 'center',
   },
   input: {
-    margin: "2%"
+    margin: "2%",
+    width: '300px',
   },
   inputContainer: {
     display: "flex",
@@ -38,11 +39,11 @@ export default {
     margin: "auto"
   },
   title: {
-    fontSize: "18px",
+    fontSize: "20px",
     fontWeight: "bolder"
   },
   link: {
-    lineHeight: 1.5
+    lineHeight: 2.5
   },
   drag: {
     position: "absolute",
@@ -51,19 +52,25 @@ export default {
     borderRadius: "5px",
     fontSize: "15px",
     cursor: "move",
-    width: "max-content"
+    width: "fit-content",
   },
   button: {
     borderRadius: "5px",
     margin: "1%",
+    padding: '1%',
     minWidth: "70px",
-    width: "max-content",
-    padding: "0.5%",
-    lineHeight: "1.5",
+    width: "fit-content",
+    lineHeight: "1",
+    fontSize: '16px',
     textAlign: "center",
     cursor: "pointer",
     color: "white",
-    background: "rgb(255, 0, 149)"
+    background: "rgb(255, 0, 149)",
+    menu:{
+      fontSize: '18px',
+      padding: '5%',
+      margin: "10%",
+    }
   },
   buttons: {
     display: "flex",

@@ -1,13 +1,15 @@
 export default {
   container: {
     backgroundColor: 'cornsilk',
+    width: '800px',
   },
   menuButton: {
     borderRadius: "5px",
-    padding: "0.5%",
+    padding: "1%",
     margin: "1%",
-    width: "100px",
-    lineHeight: '1.5',
+    width: "150px",
+    lineHeight: '2',
+    fontSize: '20px',
     textAlign: 'center',
     cursor: "pointer",
     color: "white",

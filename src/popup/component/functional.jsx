@@ -9,22 +9,24 @@ class functional extends Component {
     };
   }
 
+  openNewWindow = (para) => window.open(para, '_blank', `top=${window.screen.height * 0.1},left=${window.screen.width * 0.03},width=${window.screen.width * 0.9},height=${window.screen.height * 0.9}"`)
+
   getResult = (para, type) => {
     switch (type) {
       case 'Generic':
-        window.open(`https://plugins-media.perfectcorp.com/v${para}-dev/test/index.html`)
+        this.openNewWindow(`https://plugins-media.perfectcorp.com/v${para}-dev/test/index.html`)
         break;
       case 'Api-Key':
-        window.open(`http://192.168.19.197:3000/apikey/${para}`)
+        this.openNewWindow(`https://bcw-backend.beautycircle.com/store-web-admin/admin/webconsultation/list-customers.action`)
         break;
       case 'Build':
-        window.open(`https://plugins2.perfectcorp.com/c${para}/scminfo.txt`)
+        this.openNewWindow(`https://plugins2.perfectcorp.com/${para}/scminfo.txt`)
         break;
       case 'All Sku':
-        window.open(`http://192.168.19.197/sku?pageSize=20&apiKey=${para}`)
+        this.openNewWindow(`http://plugins.perfectcorp.com/api/webconsultation/list-skus.action?pageSize=99999&apiKey=${para}`)
         break;
       case 'Feature':
-        window.open(`https://plugins.perfectcorp.com/api/webconsultation/authorize.action?apiKey=${para}`)
+        this.openNewWindow(`https://plugins.perfectcorp.com/api/webconsultation/authorize.action?apiKey=${para}`)
         break;
     }
   }
@@ -42,8 +44,8 @@ class functional extends Component {
           </div>
           <div style={styles.inputContainer}>
             <div style={styles.name}>Api-Key:</div>
-            <input style={styles.input} placeholder={'CID only Num'} ref={r => this.inputApi = r} />
-            <div style={styles.getBtn} onClick={() => this.getResult(this.inputApi.value, 'Api-Key')} >Get</div>
+            <input style={styles.input} disabled={true} placeholder={'CID ex: c25225'} ref={r => this.inputApi = r} />
+            <div style={styles.getBtn} onClick={() => this.getResult(null, 'Api-Key')} >Get</div>
           </div>
           <div style={styles.inputContainer}>
             <div style={styles.name}>Build info:</div>
@@ -56,15 +58,11 @@ class functional extends Component {
             <div style={styles.getBtn} onClick={() => this.getResult(this.inputAllSku.value, 'All Sku')} >Get</div>
           </div>
           <div style={styles.inputContainer}>
-            <div style={styles.name}>Feature:</div>
+            <div style={styles.name}>Authorize:</div>
             <input style={styles.input} placeholder={'Api key'} ref={r => this.inputFeature = r} />
             <div style={styles.getBtn} onClick={() => this.getResult(this.inputFeature.value, 'Feature')} >Get</div>
           </div>
         </div >
-        {/* <div style={styles.result}>
-          Result:
-          <div>{result}</div>
-        </div> */}
       </div >
     );
   }

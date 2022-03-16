@@ -18,7 +18,6 @@ export default {
   },
   getBtn: {
     borderRadius: "5px",
-    fontSize: '14px',
     margin: "1%",
     padding: "1%",
     width: "50px",
@@ -36,6 +35,7 @@ export default {
     flexDirection: "row",
     margin: "2%",
     width: '90%',
+    fontSize: '16px',
   },
   input: {
     margin: "2%",
@@ -43,6 +43,7 @@ export default {
     flex: 3
   },
   name: {
-    flex: 2
+    flex: 2,
+    fontWeight: 'bolder',
   },
 };
